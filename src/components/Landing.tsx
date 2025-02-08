@@ -8,7 +8,7 @@ const signInWithWallet = async () => {
     nonce: crypto.randomUUID().replace(/-/g, ''),
     expirationTime: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
     notBefore: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
-    statement: 'This is my statement and here is a link https://worldcoin.com/apps',
+    statement: `RND: ${crypto.randomUUID().replace(/-/g, '')}. This is my statement and here is a link https://worldcoin.com/apps`,
   });
 
   console.log({ generateMessageResult, finalPayload });
