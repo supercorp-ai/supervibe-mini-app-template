@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useState, ReactNode } from 'react';
 import { MiniKit } from '@worldcoin/minikit-js';
+import { Typography } from '@worldcoin/mini-apps-ui-kit-react';
+import { Spinner } from '@/components/Spinner';
 
 type Props = { children: ReactNode };
 
@@ -37,7 +39,12 @@ export function WorldAppIframeProvider({ children }: Props) {
   }, []);
 
   if (!ready) {
-    return <div>Loading WorldApp environment…</div>;
+    return (
+      <div className="h-screen flex flex-col gap-5 items-center justify-center bg-gray-100">
+        <Spinner />
+        <Typography variant="h2">Loading Mini App environment…</Typography>
+      </div>
+    )
   }
 
   return <>{children}</>;
