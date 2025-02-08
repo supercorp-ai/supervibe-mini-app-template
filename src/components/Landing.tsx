@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { MiniKit } from '@worldcoin/minikit-js';
+import { CurrentWallet } from '@/components/CurrentWallet';
 
 const signInWithWallet = async () => {
   const { commandPayload: generateMessageResult, finalPayload } = await MiniKit.commandsAsync.walletAuth({
@@ -30,6 +31,7 @@ export const Landing = () => {
       <p className="text-xl font-semibold mb-4">
         {isInstalled ? 'MiniKit is installed!' : 'MiniKit is not installed.'}
       </p>
+      <CurrentWallet />
       <div className="flex space-x-4">
         <button className="bg-white text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition duration-300" onClick={signInWithWallet}>
           Auth
