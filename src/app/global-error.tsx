@@ -13,12 +13,12 @@ export default function GlobalError({
     window.parent.postMessage(
       {
         type: 'child-console-error',
-        message: JSON.stringify([{
+        message: [JSON.stringify({
           message: error.message,
           stack: error.stack,
           name: error.name,
           digest: error.digest,
-        }]),
+        })],
       },
       '*'
     )
