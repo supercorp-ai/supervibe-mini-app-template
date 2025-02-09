@@ -12,13 +12,13 @@ export default function GlobalError({
   useEffect(() => {
     window.parent.postMessage(
       {
-        type: 'iframe-global-error',
-        message: JSON.stringify({
+        type: 'child-console-error',
+        message: JSON.stringify([{
           message: error.message,
           stack: error.stack,
           name: error.name,
           digest: error.digest,
-        }),
+        }]),
       },
       '*'
     )
