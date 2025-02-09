@@ -41,7 +41,9 @@ export function WorldAppIframeProvider({ children }: Props) {
     return (
       <div className="h-screen flex flex-col gap-5 items-center justify-center bg-gray-100">
         <Spinner />
-        <Typography variant="h2">Loading Mini App environment…</Typography>
+        <Typography level="3" variant="heading">
+          Loading your Mini App
+        </Typography>
       </div>
     )
   }
