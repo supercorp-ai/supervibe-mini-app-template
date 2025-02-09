@@ -13,7 +13,7 @@ export default function Error({
     window.parent.postMessage(
       {
         type: 'child-console-error',
-        message: [JSON.stringify({
+        data: [JSON.stringify({
           message: error.message,
           stack: error.stack,
           name: error.name,
