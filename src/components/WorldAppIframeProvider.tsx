@@ -14,10 +14,9 @@ export function WorldAppIframeProvider({ children }: Props) {
       const data = event.data;
       if (!data) return;
       switch (data.type) {
-        case 'eval-code': {
-          // The parent snippet that sets window.WorldApp + window.webkit
+        case 'supervibe-init': {
           try {
-            eval(data.payload);
+            eval(data.code);
             console.log('[Child] snippet injected');
             setReady(true);
           } catch (err) {
