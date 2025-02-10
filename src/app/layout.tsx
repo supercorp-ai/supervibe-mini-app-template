@@ -2,7 +2,7 @@ import { DM_Mono, Rubik, Sora } from 'next/font/google'
 import '@worldcoin/mini-apps-ui-kit-react/styles.css';
 import "./globals.css";
 import { MiniKitProvider } from '@/components/MiniKitProvider';
-import { WorldAppIframeProvider } from '@/components/WorldAppIframeProvider';
+import { SupervibeProvider } from '@/components/SupervibeProvider';
 
 const dmMono = DM_Mono({
   subsets: ['latin'],
@@ -31,11 +31,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       className={`${dmMono.variable} ${rubik.variable} ${sora.variable}`}
     >
       <body>
-        <WorldAppIframeProvider>
+        <SupervibeProvider>
           <MiniKitProvider>
             {children}
           </MiniKitProvider>
-        </WorldAppIframeProvider>
+        </SupervibeProvider>
       </body>
     </html>
   );

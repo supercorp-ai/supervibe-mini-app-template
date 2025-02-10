@@ -1,12 +1,9 @@
 'use client';
 import React, { useEffect, useState, ReactNode } from 'react';
-import { MiniKit } from '@worldcoin/minikit-js';
 import { Typography } from '@worldcoin/mini-apps-ui-kit-react';
 import { Spinner } from '@/components/Spinner';
 
-type Props = { children: ReactNode };
-
-export function WorldAppIframeProvider({ children }: Props) {
+export const SupervibeProvider = ({ children }: { children: ReactNode }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -17,23 +14,30 @@ export function WorldAppIframeProvider({ children }: Props) {
         case 'supervibe-init': {
           try {
             eval(data.code);
-            console.log('[Child] snippet injected');
+            console.log('[Child] Supervibe init success');
             setReady(true);
           } catch (err) {
-            console.error('[Child] snippet error =>', err);
+            console.error('[Child] Supervibe init error =>', err);
           }
           break;
         }
-        case 'minikit-response': {
-          // The parent is forwarding an event from the real native environment
-          console.log('[Child] got minikit-response =>', data.event, data.data);
-          // e.g. data.event === 'MiniAppWalletAuth'
-          MiniKit.trigger(data.event, data.data);
+
+        case 'supervibe-eval': {
+          try {
+            eval(data.code);
+            console.log('[Child] Supervibe eval success');
+            setReady(true);
+          } catch (err) {
+            console.error('[Child] Supervibe eval error =>', err);
+          }
           break;
         }
       }
     }
+
     window.addEventListener('message', onMessage);
+    window.parent.postMessage({ type: 'supervibe-load' }, '*');
+
     return () => window.removeEventListener('message', onMessage);
   }, []);
 
