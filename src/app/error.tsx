@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import { Typography, Button } from '@worldcoin/mini-apps-ui-kit-react'
+import { PageError } from '@/components/PageError'
 
 export default function Error({
   error,
@@ -25,15 +25,8 @@ export default function Error({
   }, [error])
 
   return (
-    <div>
-      <Typography variant="heading">
-        An error occurred
-      </Typography>
-      <Button
-        onClick={() => reset()}
-      >
-        Try again
-      </Button>
-    </div>
+    <PageError
+      reset={reset}
+    />
   )
 }
