@@ -2,7 +2,11 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { MiniKit } from '@worldcoin/minikit-js';
+import {
+  MiniKit,
+  VerifyCommandInput,
+  VerificationLevel,
+} from '@worldcoin/minikit-js'
 import { Typography, Button } from '@worldcoin/mini-apps-ui-kit-react';
 import { CurrentWallet } from '@/components/CurrentWallet';
 
@@ -17,6 +21,16 @@ const signInWithWallet = async () => {
 
   console.log({ generateMessageResult, finalPayload });
 };
+
+const verify = async () => {
+  const verifyPayload: VerifyCommandInput = {
+    action: 'only-human',
+    // signal: '0x12312',
+    verification_level: VerificationLevel.Device, // Orb | Device
+  }
+  const { finalPayload } = await MiniKit.commandsAsync.verify(verifyPayload)
+  console.log({ finalPayload })
+}
 
 export const Landing = () => {
   const [isInstalled, setIsInstalled] = useState(false);
@@ -50,9 +64,13 @@ export const Landing = () => {
         {isInstalled ? 'MiniKit is installed!' : 'MiniKit is not installed.'}
       </Typography>
       <CurrentWallet />
-      <div className="flex space-x-4 mt-4">
+      <div className="flex space-x-4 mt-4 gap-4">
         <Button variant="primary" onClick={signInWithWallet}>
           Test wallet auth
+        </Button>
+
+        <Button variant="primary" onClick={verify}>
+          Test verify
         </Button>
       </div>
     </div>
