@@ -1,11 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   MiniKit,
   VerifyCommandInput,
   VerificationLevel,
+  PayCommandInput,
+  Tokens,
+  tokenToDecimals,
 } from '@worldcoin/minikit-js'
 import { Typography, Button } from '@worldcoin/mini-apps-ui-kit-react';
 import { CurrentWallet } from '@/components/CurrentWallet';
@@ -30,6 +33,27 @@ const verify = async () => {
   }
   const { finalPayload } = await MiniKit.commandsAsync.verify(verifyPayload)
   console.log({ finalPayload })
+}
+
+const PayButton = () => {
+  const onClick = useCallback(async () => {
+    const payload: PayCommandInput = {
+      reference: crypto.randomUUID().replace(/-/g, ''),
+      to: '0x8567d265820314b2fb8ec2402869fd9334e47acf',
+      tokens: [
+        {
+          symbol: Tokens.WLD,
+          token_amount: tokenToDecimals(0.01, Tokens.WLD).toString(),
+        },
+      ],
+      description: 'Test example payment for minikit',
+    }
+
+    const { finalPayload } = await MiniKit.commandsAsync.pay(payload)
+    console.log({ finalPayload })
+  }, [])
+
+  return <Button onClick={onClick}>Test pay</Button>
 }
 
 export const Landing = () => {
@@ -72,6 +96,8 @@ export const Landing = () => {
         <Button variant="primary" onClick={verify}>
           Test verify
         </Button>
+
+        <PayButton />
       </div>
     </div>
   );
