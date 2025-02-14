@@ -3,8 +3,12 @@ import React, { useEffect, useState, ReactNode } from 'react';
 import { Typography } from '@worldcoin/mini-apps-ui-kit-react';
 import { Spinner } from '@/components/Spinner';
 
+const isInIframe = () => (
+  window.self !== window.top
+)
+
 export const SupervibeProvider = ({ children }: { children: ReactNode }) => {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(!isInIframe());
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
