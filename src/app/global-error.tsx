@@ -10,6 +10,8 @@ export default function GlobalError({
   reset: () => void
 }) {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     window.parent.postMessage(
       {
         type: 'child-console-error',
@@ -21,7 +23,7 @@ export default function GlobalError({
         })],
       },
       '*'
-    )
+    );
   }, [error])
 
   return (

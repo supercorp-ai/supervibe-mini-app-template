@@ -10,6 +10,7 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
+    if (
     window.parent.postMessage(
       {
         type: 'child-console-error',
