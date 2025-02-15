@@ -1,3 +1,4 @@
+'use client';
 import { useMiniKitUser } from '@/hooks/miniKit/useMiniKitUser'
 import { Typography } from '@worldcoin/mini-apps-ui-kit-react';
 

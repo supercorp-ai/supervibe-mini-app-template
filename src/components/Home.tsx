@@ -9,7 +9,7 @@ import {
   PayCommandInput,
   Tokens,
   tokenToDecimals,
-} from '@worldcoin/minikit-js'
+} from '@worldcoin/minikit-js';
 import { Typography, Button } from '@worldcoin/mini-apps-ui-kit-react';
 import { CurrentWallet } from '@/components/CurrentWallet';
 
@@ -56,7 +56,7 @@ const PayButton = () => {
   return <Button onClick={onClick}>Test pay</Button>
 }
 
-export const Landing = () => {
+export const Home = () => {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
