@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@worldcoin/mini-apps-ui-kit-react": "^0.0.2",
-    "@worldcoin/minikit-js": "^1.3.0",
+    "@worldcoin/minikit-js": "^1.4.0",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
