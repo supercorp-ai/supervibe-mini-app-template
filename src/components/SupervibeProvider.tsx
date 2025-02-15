@@ -3,9 +3,11 @@ import React, { useEffect, useState, ReactNode } from 'react';
 import { Typography } from '@worldcoin/mini-apps-ui-kit-react';
 import { Spinner } from '@/components/Spinner';
 
-const isInIframe = () => (
-  window.self !== window.top
-)
+const isInIframe = () => {
+  if (typeof window === 'undefined') return false;
+
+  return window.self !== window.top;
+}
 
 export const SupervibeProvider = ({ children }: { children: ReactNode }) => {
   const [ready, setReady] = useState(!isInIframe());
