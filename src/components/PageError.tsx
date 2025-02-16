@@ -3,7 +3,7 @@ import { Typography, Button } from '@worldcoin/mini-apps-ui-kit-react';
 
 export const PageError = () => {
   const onClick = useCallback(() => {
-    window.parent.postMessage({ type: 'supervibe-fix' }, '*');
+    window.parent.postMessage({ type: 'supervibe-request-fix' }, '*');
   }, [])
 
   return (
