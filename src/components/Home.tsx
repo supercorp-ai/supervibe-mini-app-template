@@ -60,7 +60,6 @@ export const Home = () => {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
-    MiniKit.install();
     setIsInstalled(MiniKit.isInstalled());
   }, []);
 
