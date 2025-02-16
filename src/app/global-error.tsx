@@ -4,7 +4,6 @@ import { PageError } from '@/components/PageError'
 
 export default function GlobalError({
   error,
-  reset,
 }: {
   error: Error & { digest?: string }
   reset: () => void
@@ -29,9 +28,7 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <PageError
-          reset={reset}
-        />
+        <PageError />
       </body>
     </html>
   )
